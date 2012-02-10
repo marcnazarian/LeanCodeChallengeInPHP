@@ -22,24 +22,25 @@ class CashierTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(150, $cashier->scanItem("Bananas"));
     }
     
-    /** @test */
-    public function twoLotsOfCherriesGet20pOff() {
-        $cashier = new Cashier();
-        $this->assertEquals(100, $cashier->scanItemAndReturnTotal("Apples"));
-        $this->assertEquals(175, $cashier->scanItemAndReturnTotal("Cherries"));
-        $this->assertEquals(230, $cashier->scanItemAndReturnTotal("Cherries"));
-    }
+//    /** @test */
+//    public function itemsSeparatedByCommaAreNowAccepted() {
+//        $cashier = new Cashier();
+//        $this->assertEquals(325, $cashier->scanItemAndReturnTotal("Apples,Cherries,Bananas"));
+//    }
+//    
+//    /** @test */
+//    public function twoLotsOfCherriesStillGet20pOffWithCsvFormat() {
+//        $cashier = new Cashier();
+//        $this->assertEquals(130, $cashier->scanItemAndReturnTotal("Cherries,Cherries"));
+//    }
     
     /** @test */
-    public function itemsSeparatedByCommaAreNowAccepted() {
+    public function twoLotsOfCherriesGet30pOffAndGetSecondBananasForFree() {
         $cashier = new Cashier();
-        $this->assertEquals(325, $cashier->scanItemAndReturnTotal("Apples,Cherries,Bananas"));
-    }
-    
-    /** @test */
-    public function twoLotsOfCherriesStillGet20pOffWithCsvFormat() {
-        $cashier = new Cashier();
-        $this->assertEquals(130, $cashier->scanItemAndReturnTotal("Cherries,Cherries"));
+        $this->assertEquals(75, $cashier->scanItemAndReturnTotal("Cherries"));
+        $this->assertEquals(120, $cashier->scanItemAndReturnTotal("Cherries"));
+        $this->assertEquals(270, $cashier->scanItemAndReturnTotal("Bananas"));
+        $this->assertEquals(270, $cashier->scanItemAndReturnTotal("Bananas"));
     }
     
 }

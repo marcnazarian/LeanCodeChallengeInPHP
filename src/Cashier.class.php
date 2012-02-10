@@ -4,6 +4,7 @@ class Cashier {
     
   var $total = 0;
   var $nbLotsOfCherries = 0;
+  var $nbLotsOfBananas = 0;
     
   public function checkout() {
     while (true) {
@@ -27,13 +28,18 @@ class Cashier {
           $this->nbLotsOfCherries++;
           if ($this->nbLotsOfCherries == 2) {
               $this->nbLotsOfCherries = 0;
-              return 75 - 20;
+              return 75 - 30;
           } else {
               return 75;
           }
-          
       } elseif ($item == "Bananas") {
-          return 150;
+          $this->nbLotsOfBananas++;
+          if ($this->nbLotsOfBananas == 2) {
+              $this->nbLotsOfBananas = 0;
+              return 0;
+          } else {
+              return 150;
+          }
       }
       
   }
