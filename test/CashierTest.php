@@ -23,11 +23,11 @@ class CashierTest extends PHPUnit_Framework_TestCase {
     }
     
     /** @test */
-    public function printCartTotal() {
+    public function twoLotsOfCherriesGet20pOff() {
         $cashier = new Cashier();
         $this->assertEquals(100, $cashier->scanItemAndReturnTotal("Apples"));
         $this->assertEquals(175, $cashier->scanItemAndReturnTotal("Cherries"));
-        $this->assertEquals(250, $cashier->scanItemAndReturnTotal("Cherries"));
+        $this->assertEquals(230, $cashier->scanItemAndReturnTotal("Cherries"));
     }
     
 }
