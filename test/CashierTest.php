@@ -35,14 +35,31 @@ class CashierTest extends PHPUnit_Framework_TestCase {
 //    }
     
     /** @test */
-    public function twoLotsOfCherriesGet20pOffAndGetSecondBananasForFreeAndPommesAndMeleAreAcceptedAsApples() {
+    public function threePommesIsDiscountedTo200() {
         $cashier = new Cashier();
-        $this->assertEquals(75, $cashier->scanItemAndReturnTotal("Cherries"));
-        $this->assertEquals(175, $cashier->scanItemAndReturnTotal("Pommes"));
-        $this->assertEquals(230, $cashier->scanItemAndReturnTotal("Cherries"));
-        $this->assertEquals(380, $cashier->scanItemAndReturnTotal("Bananas"));
-        $this->assertEquals(380, $cashier->scanItemAndReturnTotal("Bananas"));
-        $this->assertEquals(480, $cashier->scanItemAndReturnTotal("Apples"));
+        $this->assertEquals(100, $cashier->scanItemAndReturnTotal("Pommes"));
+        $this->assertEquals(200, $cashier->scanItemAndReturnTotal("Pommes"));
+        $this->assertEquals(200, $cashier->scanItemAndReturnTotal("Pommes"));
+    }
+    
+    /** @test */
+    public function twoMelaIsDiscountedTo150() {
+        $cashier = new Cashier();
+        $this->assertEquals(100, $cashier->scanItemAndReturnTotal("Mele"));
+        $this->assertEquals(150, $cashier->scanItemAndReturnTotal("Mele"));
+    }
+    
+    /** @test */
+    public function twoLotsOfCherriesGet20pOffAndGetSecondBananasForFreeAndDiscountOnPommesAndMele() {
+        $cashier = new Cashier();
+        $this->assertEquals(100, $cashier->scanItemAndReturnTotal("Mele"));
+        $this->assertEquals(200, $cashier->scanItemAndReturnTotal("Pommes"));
+        $this->assertEquals(300, $cashier->scanItemAndReturnTotal("Pommes"));
+        $this->assertEquals(400, $cashier->scanItemAndReturnTotal("Apples"));
+        $this->assertEquals(400, $cashier->scanItemAndReturnTotal("Pommes"));
+        $this->assertEquals(450, $cashier->scanItemAndReturnTotal("Mele"));
+        $this->assertEquals(525, $cashier->scanItemAndReturnTotal("Cherries"));
+        $this->assertEquals(580, $cashier->scanItemAndReturnTotal("Cherries"));
     }
     
 }
