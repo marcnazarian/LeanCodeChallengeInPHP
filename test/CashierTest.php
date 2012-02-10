@@ -22,17 +22,11 @@ class CashierTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(150, $cashier->scanItem("Bananas"));
     }
     
-//    /** @test */
-//    public function itemsSeparatedByCommaAreNowAccepted() {
-//        $cashier = new Cashier();
-//        $this->assertEquals(325, $cashier->scanItemAndReturnTotal("Apples,Cherries,Bananas"));
-//    }
-//    
-//    /** @test */
-//    public function twoLotsOfCherriesStillGet20pOffWithCsvFormat() {
-//        $cashier = new Cashier();
-//        $this->assertEquals(130, $cashier->scanItemAndReturnTotal("Cherries,Cherries"));
-//    }
+    /** @test */
+    public function itemsSeparatedByCommaAreNowAccepted() {
+        $cashier = new Cashier();
+        $this->assertEquals(325, $cashier->scanItemAndReturnTotal("Apples,Cherries,Bananas"));
+    }
     
     /** @test */
     public function threePommesIsDiscountedTo200() {
@@ -43,23 +37,16 @@ class CashierTest extends PHPUnit_Framework_TestCase {
     }
     
     /** @test */
-    public function twoMelaIsDiscountedTo150() {
+    public function twoMelaIsDiscountedTo100() {
         $cashier = new Cashier();
         $this->assertEquals(100, $cashier->scanItemAndReturnTotal("Mele"));
-        $this->assertEquals(150, $cashier->scanItemAndReturnTotal("Mele"));
+        $this->assertEquals(100, $cashier->scanItemAndReturnTotal("Mele"));
     }
     
     /** @test */
     public function twoLotsOfCherriesGet20pOffAndGetSecondBananasForFreeAndDiscountOnPommesAndMele() {
         $cashier = new Cashier();
-        $this->assertEquals(100, $cashier->scanItemAndReturnTotal("Mele"));
-        $this->assertEquals(200, $cashier->scanItemAndReturnTotal("Pommes"));
-        $this->assertEquals(300, $cashier->scanItemAndReturnTotal("Pommes"));
-        $this->assertEquals(400, $cashier->scanItemAndReturnTotal("Apples"));
-        $this->assertEquals(400, $cashier->scanItemAndReturnTotal("Pommes"));
-        $this->assertEquals(450, $cashier->scanItemAndReturnTotal("Mele"));
-        $this->assertEquals(525, $cashier->scanItemAndReturnTotal("Cherries"));
-        $this->assertEquals(580, $cashier->scanItemAndReturnTotal("Cherries"));
+        $this->assertEquals(680, $cashier->scanItemAndReturnTotal("Mele,Pommes,Pommes,Apples,Pommes,Mele,Cherries,Cherries,Bananas"));
     }
     
 }

@@ -54,7 +54,7 @@ class Cashier {
       $this->nbLotsOfMele++;
       if ($this->nbLotsOfMele == 2) {
           $this->nbLotsOfMele = 0;
-          return 50;
+          return 0;
       } else {
           return 100;
       }
