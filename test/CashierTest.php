@@ -30,4 +30,16 @@ class CashierTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(230, $cashier->scanItemAndReturnTotal("Cherries"));
     }
     
+    /** @test */
+    public function itemsSeparatedByCommaAreNowAccepted() {
+        $cashier = new Cashier();
+        $this->assertEquals(325, $cashier->scanItemAndReturnTotal("Apples,Cherries,Bananas"));
+    }
+    
+    /** @test */
+    public function twoLotsOfCherriesStillGet20pOffWithCsvFormat() {
+        $cashier = new Cashier();
+        $this->assertEquals(130, $cashier->scanItemAndReturnTotal("Cherries,Cherries"));
+    }
+    
 }

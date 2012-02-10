@@ -8,12 +8,15 @@ class Cashier {
   public function checkout() {
     while (true) {
       $input = readline();
-      echo scanItemAndReturnTotal($input) . PHP_EOL;
+      echo $this->scanItemAndReturnTotal($input) . PHP_EOL;
     }
   }
   
-  public function scanItemAndReturnTotal($item) {
-      $this->total += $this->scanItem($item);
+  public function scanItemAndReturnTotal($input) {
+      $items = explode(",", $input);
+      foreach ($items as $item) {
+        $this->total += $this->scanItem($item);
+      }
       return $this->total;
   }
   
