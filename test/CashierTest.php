@@ -37,16 +37,23 @@ class CashierTest extends PHPUnit_Framework_TestCase {
     }
     
     /** @test */
-    public function twoMelaIsDiscountedTo100() {
+    public function twoMelaIsDiscountedTo150() {
         $cashier = new Cashier();
         $this->assertEquals(100, $cashier->scanItemAndReturnTotal("Mele"));
-        $this->assertEquals(100, $cashier->scanItemAndReturnTotal("Mele"));
+        $this->assertEquals(150, $cashier->scanItemAndReturnTotal("Mele"));
     }
     
     /** @test */
-    public function twoLotsOfCherriesGet20pOffAndGetSecondBananasForFreeAndDiscountOnPommesAndMele() {
+    public function fifthPieceOfFruitGetAFurther200OffTheBill() {
         $cashier = new Cashier();
-        $this->assertEquals(680, $cashier->scanItemAndReturnTotal("Mele,Pommes,Pommes,Apples,Pommes,Mele,Cherries,Cherries,Bananas"));
+        $this->assertEquals(250, $cashier->scanItemAndReturnTotal("Mele,Pommes,Pommes,Mele"));
+        $this->assertEquals(200, $cashier->scanItemAndReturnTotal("Bananas"));
+    }
+    
+    /** @test */
+    public function fourApplesGetsAnother100OffTheBill() {
+        $cashier = new Cashier();
+        $this->assertEquals(150, $cashier->scanItemAndReturnTotal("Mele,Pommes,Pommes,Apples,Mele"));
     }
     
 }
